@@ -1,3 +1,21 @@
+<!-- AWP_In_Variable Name='""Data_block_1""' -->
+<!-- AWP_In_Variable Name='M50.1' -->
+<!-- AWP_In_Variable Name='MD26' -->
+<!-- AWP_In_Variable Name='MD30' -->
+<!-- AWP_In_Variable Name='MD18' -->
+<!-- AWP_In_Variable Name='MD10' -->
+<!-- AWP_In_Variable Name='MD14' -->
+<!-- AWP_Enum_Def Name="OverrideStatus" Values='0:"Stop",1:"Start"' -->
+<!-- AWP_Enum_Def Name="ValveStatus" Values='0:"Close",1:"Open"' -->
+<!-- AWP_Enum_Def Name="AutoLocal" Values='0:"Auto",1:"Local"' -->
+<!-- AWP_Enum_Ref Name="Machine_status" Enum="OverrideStatus" -->
+<!-- AWP_Enum_Ref Name="Operation_Mode" Enum="AutoLocal" -->
+<!-- AWP_Enum_Ref Name='Q0.0' Enum="ValveStatus" -->
+<!-- AWP_Enum_Ref Name='Q0.1' Enum="ValveStatus" -->
+<!-- AWP_Enum_Ref Name='Q0.2' Enum="ValveStatus" -->
+<!-- AWP_Enum_Ref Name='Q0.3' Enum="ValveStatus" -->
+<!-- AWP_Enum_Ref Name='Q0.4' Enum="ValveStatus" -->
+<!-- AWP_Enum_Ref Name='Q0.5' Enum="ValveStatus" -->
 <!DOCTYPE html>
 <html>
 	<head>
@@ -38,27 +56,28 @@
 		    <tbody>
 		    	<tr>
 		    		<td  class="text-left td-title">O2 Level</td>
-		    		<td  class="text-left td-value"> <span>%</span></td>
+		    		<td  class="text-left td-value"> <span id="O2_value"></span><span>%</span></td>
 
 		    		<td class="text-left td-title">N2 supply</td>
-		    		<td  class="text-left td-value"> <span>bar</span></td>
+		    		<td  class="text-left td-value"><span id="Pressure_Value"></span> <span>bar</span></td>
 		    	</tr>
 		    	<tr>
 		    		<td  class="text-left td-title">Air supply</td>
-		    		<td  class="text-left td-value"> <span>bar</span></td>
+		    		<td  class="text-left td-value"><span id="AirSupply_Value"></span> <span>bar</span></td>
 
 		    		<td class="text-left td-title">Dryer temp</td>
-		    		<td  class="text-left td-value"> <span>&#176;C</span></td>
+		    		<td  class="text-left td-value"> <span id="DryerTemp_Value"></span><span>&#176;C</span></td>
 		    	</tr>
 		    	<tr>
 		    		<td  class="text-left td-title">Converter</td>
-		    		<td  class="text-left td-value"> </td>
+		    		<td  class="text-left td-value"> <span id="Converter_Value"></span></td>
 
 		    		<td class="text-left td-title">Alarm</td>
-		    		<td  class="text-left td-value"></td>
+		    		<td  class="text-left td-value"><span id="Alarm_Value"></span></td>
 		    	</tr>
 		    </tbody>
 		  </table>
+		  <iframe src="Update_Info.html" style="display:none;" />
 		</div>
 		</div>
 	</body>
