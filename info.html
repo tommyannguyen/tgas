@@ -29,6 +29,13 @@
 		<link rel="stylesheet" href="css/site.css">
 		<script src="js/jquery-1.11.2.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
+		<script src="js/site.js"></script>
+		<script type="text/javascript">
+			$( document ).ready(function() {
+			  	var home = new tgasHome($("#tab_Info"),$("#tab_Setting"),$("#tab_Config"),$("#tab_Alarm"),
+			  		$("#div_Info"),$("#div_Setting"),$("#div_Config"),$("#div_Alarm"));
+			});
+		</script>
 	</head>
 	<body>
 		<div class="container">
@@ -40,44 +47,113 @@
             <div class="container">
            		<button type="button" class="btn btn-default navbar-btn navbar-btn-on-off">On/Off</button>
               <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Info</a></li>
-                <li><a href="Setting.html">Setting</a></li>
-                <li><a href="Config.html">Config</a></li>
-                <li><a href="Alarm.html">Alarm</a></li>
+                <li class="active"><a href="#" id="tab_Info">Info</a></li>
+                <li><a href="" id="tab_Setting">Setting</a></li>
+                <li><a href="" id="tab_Config">Config</a></li>
+                <li><a href="" id="tab_Alarm">Alarm</a></li>
               </ul>
             </div>
           </div>
         </div>
-      
-      	<div class="panel panel-default">
-		  <div class="panel-heading">Operation info</div>
-		  
-		  <table class="table table-hover">
-		    <tbody>
-		    	<tr>
-		    		<td  class="text-left td-title">O2 Level</td>
-		    		<td  class="text-left td-value"> <span id="O2_value"></span><span>%</span></td>
+      	<div class="row">
+		  <div class="col-md-6" >
+		  	<div class="panel panel-default" id="div_Info">
+			  <div class="panel-heading heading-title">Operation info</div>
+			  
+			  <table class="table table-hover">
+			    <tbody>
+			    	<tr>
+			    		<td  class="text-left td-title">O2 Level</td>
+			    		<td  class="text-left td-value"> <span id="O2_value"></span><span>%</span></td>
 
-		    		<td class="text-left td-title">N2 supply</td>
-		    		<td  class="text-left td-value"><span id="Pressure_Value"></span> <span>bar</span></td>
-		    	</tr>
-		    	<tr>
-		    		<td  class="text-left td-title">Air supply</td>
-		    		<td  class="text-left td-value"><span id="AirSupply_Value"></span> <span>bar</span></td>
+			    		<td class="text-left td-title">N2 supply</td>
+			    		<td  class="text-left td-value"><span id="Pressure_Value"></span> <span>bar</span></td>
+			    	</tr>
+			    	<tr>
+			    		<td  class="text-left td-title">Air supply</td>
+			    		<td  class="text-left td-value"><span id="AirSupply_Value"></span> <span>bar</span></td>
 
-		    		<td class="text-left td-title">Dryer temp</td>
-		    		<td  class="text-left td-value"> <span id="DryerTemp_Value"></span><span>&#176;C</span></td>
-		    	</tr>
-		    	<tr>
-		    		<td  class="text-left td-title">Converter</td>
-		    		<td  class="text-left td-value"> <span id="Converter_Value"></span></td>
+			    		<td class="text-left td-title">Dew point</td>
+			    		<td  class="text-left td-value"> <span id="DryerTemp_Value"></span><span>&#176;C</span></td>
+			    	</tr>
+			    	<tr>
+			    		<td  class="text-left td-title">Converter</td>
+			    		<td  class="text-left td-value"> <span id="Converter_Value"></span></td>
 
-		    		<td class="text-left td-title">Alarm</td>
-		    		<td  class="text-left td-value"><span id="Alarm_Value"></span></td>
-		    	</tr>
-		    </tbody>
-		  </table>
-		  <iframe src="Update_Info.html" style="display:none;" />
+			    		<td class="text-left td-title">Alarm</td>
+			    		<td  class="text-left td-value"><span id="Alarm_Value"></span></td>
+			    	</tr>
+			    </tbody>
+			  </table>
+			  <iframe src="Update_Info.html" style="display:none;"></iframe>
+			</div>
+			</div>
+
+		  <div class="col-md-6" >
+		  	<div class="panel panel-default" id="div_Setting">
+			  <div class="panel-heading heading-title">Setting</div>
+			  
+			  <table class="table table-hover">
+			    <tbody>
+			    	<tr>
+			    		<td  class="text-left td-title">O2 high</td>
+			    		<td  class="text-left td-value"> <span id="O2_High_Value"></span><span>%</span></td>
+
+			    		<td class="text-left td-title">Difference</td>
+			    		<td  class="text-left td-value"><span id="O2_High_Difference_Value"></span> </span><span>%</span></td>
+			    	</tr>
+			    	<tr>
+			    		<td  class="text-left td-title">Temp high</td>
+			    		<td  class="text-left td-value"><span id="Temp_High_Value"></span> <span>&#176;C</span></td>
+
+			    		<td class="text-left td-title">Difference</td>
+			    		<td  class="text-left td-value"> <span id="Temp_High_Difference_Value"></span><span>&#176;C</span></td>
+			    	</tr>
+			    	<tr>
+			    		<td  class="text-left td-title">Air low</td>
+			    		<td  class="text-left td-value"> <span id="Air_Low_Value"></span><span>bar</span></td>
+
+			    		<td class="text-left td-title">Difference</td>
+			    		<td  class="text-left td-value"><span id="Air_Low_Difference_Value"></span><span>bar</span></td>
+			    	</tr>
+			    </tbody>
+			  </table>
+			  <iframe src="Update_Setting.html" style="display:none;" ></iframe>
+			</div>
+		  </div>
+		</div>
+
+		
+
+		<div class="row">
+			<div class="col-md-6" >
+		  	<div class="panel panel-default" id="div_Alarm">
+			  <div class="panel-heading heading-title">Alarm</div>
+			  <input type="hidden" id="No_Alarm_Value"/>
+			  <input type="hidden" id="High_Oxy_Oput_Value"/>
+			  <input type="hidden" id="High_Temp_Air_Value"/>
+			  <input type="hidden" id="Low_Pressure_Air_Value"/>
+			  <ol>
+			  	<li id="ref_No_Alarm_Value">No Alarm</li>
+			  	<li>High oxy output</li>
+			  	<li>High temp air supply - converter off</li>
+			  	<li>Low pressure air supply</li>
+			  </ol>
+			  
+			  <iframe src="Update_Alarm.html" style="display:none;"></iframe>
+			</div>
+			</div>
+
+			<div class="col-md-6" >
+		  	<div class="panel panel-default" id="div_Config">
+			  <div class="panel-heading heading-title">Config</div>
+			  <div class="graph-value">
+			  	
+			  </div>
+			  
+			  <iframe src="Update_Graph.html" style="display:none;"></iframe>
+			</div>
+			</div>
 		</div>
 		</div>
 	</body>

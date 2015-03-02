@@ -21,7 +21,7 @@
 <html>
 	<head>
 		<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
-		<title>Web page demo - Automatic update - Update page</title>
+		<title>Automatic update - Update page</title>
 		<script type="text/javascript">
 		 
 		 /* String.trim() is not supported by every browser - thus add this functionality is necessary */
@@ -84,18 +84,18 @@
 			</tr>
 			<tr>
 				<td>
-					:="Data_block_1".O2 value:
+					:="Data_block_1".O2 value setpoint:
 				</td>
 				<td>
-					O2_value
+					O2_High_Value
 				</td>
 			</tr>
 			<tr>
 				<td>
-					:="Data_block_1".N2_Pressure_Value:
+					:="Data_block_1".O2 value difference setpoint:
 				</td>
 				<td>
-					Pressure_Value
+					O2_High_Difference_Value
 				</td>
 			</tr>
 			<tr>
@@ -108,26 +108,34 @@
 			</tr>
 			<tr>
 				<td>
-					:="Data_block_1".Dryer_temp:
+					:="Data_block_1".Dryer_Temp_setpoint:
 				</td>
 				<td>
-					DryerTemp_Value
+					Temp_High_Value
 				</td>
 			</tr>
 			<tr>
 				<td>		
-					:=M50.2:
+					:="Data_block_1".Dryer_Temp_difference_setpoint:
 				</td>
 				<td>
-					Converter_Value
+					Temp_High_Difference_Value
 				</td>
 			</tr>
 			<tr>
 				<td>		
-					:=M60.0:
+					:="Data_block_1".Flow_Meter_Value:
 				</td>
 				<td>
-					Alarm_Value
+					Air_Low_Value
+				</td>
+			</tr>
+			<tr>
+				<td>		
+					:="Data_block_1".Flow_Meter_Offset:
+				</td>
+				<td>
+					Air_Low_Difference_Value
 				</td>
 			</tr>
 		</table>
