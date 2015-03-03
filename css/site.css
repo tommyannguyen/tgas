@@ -20,3 +20,14 @@
 {
 	color : blue !important;
 }
+#alarm-notify-icon
+{
+	border:none;
+	background: #FF00CC;
+	width: 20px;
+	height: 20px;
+}
+.alarm
+{
+	color : #FF00CC;
+}

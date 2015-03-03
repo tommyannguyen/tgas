@@ -50,7 +50,7 @@
                 <li class="active"><a href="#" id="tab_Info">Info</a></li>
                 <li><a href="" id="tab_Setting">Setting</a></li>
                 <li><a href="" id="tab_Config">Config</a></li>
-                <li><a href="" id="tab_Alarm">Alarm</a></li>
+                <li><a href="" id="tab_Alarm">Alarm <button type="button" class="btn btn-default btn-xs" id="alarm-notify-icon"></button></a></li>
               </ul>
             </div>
           </div>
@@ -135,9 +135,9 @@
 			  <input type="hidden" id="Low_Pressure_Air_Value"/>
 			  <ol>
 			  	<li id="ref_No_Alarm_Value">No Alarm</li>
-			  	<li>High oxy output</li>
-			  	<li>High temp air supply - converter off</li>
-			  	<li>Low pressure air supply</li>
+			  	<li id="ref_High_Oxy_Oput_Value" class="alarm">High oxy output</li>
+			  	<li id="ref_High_Temp_Air_Value" class="alarm">High temp air supply - converter off</li>
+			  	<li id="ref_Low_Pressure_Air_Value" class="alarm">Low pressure air supply</li>
 			  </ol>
 			  
 			  <iframe src="Update_Alarm.html" style="display:none;"></iframe>
