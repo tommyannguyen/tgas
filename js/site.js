@@ -2,16 +2,17 @@ function tgasHome(tabInfo,tabSetting,tabConfig,tabAlarm,divInfo,divSetting,divCo
 {
 	var self = this;
 	self.isInfoActive = true;
-	self.isSettingActive = false;
-	self.isConfigActive = false;
-	self.isAlarmActive = false;
+	self.isSettingActive = true;
+	self.isConfigActive = true;
+	self.isAlarmActive = true;
 
 	//alarms
 	self.no_Alarm_Value = "0";
 	self.high_Oxy_Oput_Value = "0";
 	self.high_Temp_Air_Value = "0";
 	self.low_Pressure_Air_Value = "0";
-
+	self.on_OffValue ="0";
+	
 	self.invalidate = function()
 	{
 		if(self.isInfoActive)
@@ -132,8 +133,33 @@ function tgasHome(tabInfo,tabSetting,tabConfig,tabAlarm,divInfo,divSetting,divCo
 				txtLowPressure.removeClass("hidden");
 			}
 		}
+	
+		// On-Off button
+		
+		value = $("#ON_OFF").text();
+		var btnOnOff = $("#btnOnOff");
+		if(value =="1")
+		{
+			btnOnOff.addClass("plc-on");
+			btnOnOff.removeClass("plc-off");
+		}
+		else
+		{
+			btnOnOff.removeClass("plc-on");
+			btnOnOff.addClass("plc-off");
+		}
 	};
-
+	self.setOnOff = function(val)
+	{
+		var on_off_value = "1";
+		if(!val){
+			on_off_value = "0";
+		}
+		var onOffFrame = $("#SetOnOffFrame").contents();
+		var txtOnOff = onOffFrame.find('#ON_OFF');
+		txtOnOff.val(on_off_value);
+		onOffFrame.find('form').submit();
+	}
 	self.int = function()
 	{
 		tabInfo.click(function(e){
@@ -188,7 +214,19 @@ function tgasHome(tabInfo,tabSetting,tabConfig,tabAlarm,divInfo,divSetting,divCo
 			self.invalidate();
 			e.preventDefault();
 		});
-
+		
+		var btnOnOff = $("#btnOnOff");
+		btnOnOff.click(function(){
+			var value = $("#ON_OFF").text();
+			if(value =="1")
+			{
+				self.setOnOff(false);
+			}
+			else
+			{
+				self.setOnOff(true);
+			}
+		});
 		self.invalidate();
 	};
 	self.int();

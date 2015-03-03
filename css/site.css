@@ -5,7 +5,7 @@
 }
 .td-title
 {
-	width: 20%;
+	width: 25%;
 }
 .td-value
 {
@@ -31,3 +31,43 @@
 {
 	color : #FF00CC;
 }
+.block-infos
+{
+	margin-top:30px ;
+}
+.block-infos *
+{
+	font-size:20px;
+}
+.block-infors .panel-default
+{
+	height:185px;
+}
+.graph-value
+{
+	height:122px;
+}
+#btnOnOff
+{
+	width:70px;
+}
+.icon-menu
+{
+	display : inline;
+	margin-left : 20px;
+}
+.plc-on,.plc-on:focus
+{
+	background: #33CC00;
+	color:white;
+}
+.plc-off,.plc-off:focus
+{
+	background: red;
+	color:white;
+}
+
+
+
+
+

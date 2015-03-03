@@ -1,21 +1,3 @@
-<!-- AWP_In_Variable Name='""Data_block_1""' -->
-<!-- AWP_In_Variable Name='M50.1' -->
-<!-- AWP_In_Variable Name='MD26' -->
-<!-- AWP_In_Variable Name='MD30' -->
-<!-- AWP_In_Variable Name='MD18' -->
-<!-- AWP_In_Variable Name='MD10' -->
-<!-- AWP_In_Variable Name='MD14' -->
-<!-- AWP_Enum_Def Name="OverrideStatus" Values='0:"Stop",1:"Start"' -->
-<!-- AWP_Enum_Def Name="ValveStatus" Values='0:"Close",1:"Open"' -->
-<!-- AWP_Enum_Def Name="AutoLocal" Values='0:"Auto",1:"Local"' -->
-<!-- AWP_Enum_Ref Name="Machine_status" Enum="OverrideStatus" -->
-<!-- AWP_Enum_Ref Name="Operation_Mode" Enum="AutoLocal" -->
-<!-- AWP_Enum_Ref Name='Q0.0' Enum="ValveStatus" -->
-<!-- AWP_Enum_Ref Name='Q0.1' Enum="ValveStatus" -->
-<!-- AWP_Enum_Ref Name='Q0.2' Enum="ValveStatus" -->
-<!-- AWP_Enum_Ref Name='Q0.3' Enum="ValveStatus" -->
-<!-- AWP_Enum_Ref Name='Q0.4' Enum="ValveStatus" -->
-<!-- AWP_Enum_Ref Name='Q0.5' Enum="ValveStatus" -->
 <!DOCTYPE html>
 <html>
 	<head>
@@ -44,15 +26,19 @@
 	</head>
 	<body>
 		<div class="container">
-			
-        <h3 class="muted"><img src="img/N2machine.png" class="img-logo"></img>TGAS Engineering</h3>
-        <div class="navbar navbar-default">
-
+		<div class="row">
+			<div class="col-md-12" >
+				<button type="button" class="btn btn-default" id="btnOnOff">On/Off</button><span id="ON_OFF" class="hidden"></span><h3 class="muted icon-menu"><img src="img/N2machine.png" class="img-logo"></img>TGAS Engineering</h3>
+			</div>
+			<iframe src="SetOnOff.html" style="display:none;" id="SetOnOffFrame"></iframe>
+		</div>
+        
+        <div class="navbar navbar-default hide">
           <div class="navbar-inner">
             <div class="container">
            		<button type="button" class="btn btn-default navbar-btn navbar-btn-on-off">On/Off</button>
               <ul class="nav navbar-nav">
-                <li class="active"><a href="#" id="tab_Info">Info</a></li>
+                <li><a href="#" id="tab_Info">Info</a></li>
                 <li><a href="" id="tab_Setting">Setting</a></li>
                 <li><a href="" id="tab_Config">Config</a></li>
                 <li><a href="" id="tab_Alarm">Alarm <button type="button" class="btn btn-default btn-xs" id="alarm-notify-icon"></button></a></li>
@@ -60,7 +46,8 @@
             </div>
           </div>
         </div>
-      	<div class="row">
+      	
+		<div class="row block-infos">
 		  <div class="col-md-6" >
 		  	<div class="panel panel-default" id="div_Info">
 			  <div class="panel-heading heading-title">Operation info</div>
@@ -69,24 +56,24 @@
 			    <tbody>
 			    	<tr>
 			    		<td  class="text-left td-title">O2 Level</td>
-			    		<td  class="text-left td-value"> <span id="O2_value"></span><span>%</span></td>
+			    		<td  class="text-left td-value text-right"> <span id="O2_value"></span><span>%</span></td>
 
 			    		<td class="text-left td-title">N2 supply</td>
-			    		<td  class="text-left td-value"><span id="Pressure_Value"></span> <span>bar</span></td>
+			    		<td  class="text-left td-value text-right"><span id="Pressure_Value"></span> <span>bar</span></td>
 			    	</tr>
 			    	<tr>
 			    		<td  class="text-left td-title">Air supply</td>
-			    		<td  class="text-left td-value"><span id="AirSupply_Value"></span> <span>bar</span></td>
+			    		<td  class="text-left td-value text-right"><span id="AirSupply_Value"></span> <span>bar</span></td>
 
 			    		<td class="text-left td-title">Dew point</td>
-			    		<td  class="text-left td-value"> <span id="DryerTemp_Value"></span><span>&#176;C</span></td>
+			    		<td  class="text-left td-value text-right"> <span id="DryerTemp_Value"></span><span>&#176;C</span></td>
 			    	</tr>
 			    	<tr>
 			    		<td  class="text-left td-title">Converter</td>
-			    		<td  class="text-left td-value"> <span id="Converter_Value"></span></td>
+			    		<td  class="text-left td-value text-right"> <span id="Converter_Value"></span></td>
 
 			    		<td class="text-left td-title">Alarm</td>
-			    		<td  class="text-left td-value"><span id="Alarm_Value"></span></td>
+			    		<td  class="text-left td-value text-right"><span id="Alarm_Value"></span></td>
 			    	</tr>
 			    </tbody>
 			  </table>
@@ -102,24 +89,24 @@
 			    <tbody>
 			    	<tr>
 			    		<td  class="text-left td-title">O2 high</td>
-			    		<td  class="text-left td-value"> <span id="O2_High_Value"></span><span>%</span></td>
+			    		<td  class="text-left td-value text-right"> <span id="O2_High_Value"></span><span>%</span></td>
 
 			    		<td class="text-left td-title">Difference</td>
-			    		<td  class="text-left td-value"><span id="O2_High_Difference_Value"></span> </span><span>%</span></td>
+			    		<td  class="text-left td-value text-right"><span id="O2_High_Difference_Value"></span> </span><span>%</span></td>
 			    	</tr>
 			    	<tr>
 			    		<td  class="text-left td-title">Temp high</td>
-			    		<td  class="text-left td-value"><span id="Temp_High_Value"></span> <span>&#176;C</span></td>
+			    		<td  class="text-left td-value text-right"><span id="Temp_High_Value"></span> <span>&#176;C</span></td>
 
 			    		<td class="text-left td-title">Difference</td>
-			    		<td  class="text-left td-value"> <span id="Temp_High_Difference_Value"></span><span>&#176;C</span></td>
+			    		<td  class="text-left td-value text-right"> <span id="Temp_High_Difference_Value"></span><span>&#176;C</span></td>
 			    	</tr>
 			    	<tr>
 			    		<td  class="text-left td-title">Air low</td>
-			    		<td  class="text-left td-value"> <span id="Air_Low_Value"></span><span>bar</span></td>
+			    		<td  class="text-left td-value text-right"> <span id="Air_Low_Value"></span><span>bar</span></td>
 
 			    		<td class="text-left td-title">Difference</td>
-			    		<td  class="text-left td-value"><span id="Air_Low_Difference_Value"></span><span>bar</span></td>
+			    		<td  class="text-left td-value text-right"><span id="Air_Low_Difference_Value"></span><span>bar</span></td>
 			    	</tr>
 			    </tbody>
 			  </table>
@@ -130,7 +117,7 @@
 
 		
 
-		<div class="row">
+		<div class="row block-infos">
 			<div class="col-md-6" >
 		  	<div class="panel panel-default" id="div_Alarm">
 			  <div class="panel-heading heading-title">Alarm</div>
@@ -146,6 +133,7 @@
 			  </ol>
 			  
 			  <iframe src="Update_Alarm.html" style="display:none;" id="alarm-frame"></iframe>
+			  
 			</div>
 			</div>
 
