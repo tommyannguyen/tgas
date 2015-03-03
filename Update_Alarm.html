@@ -33,7 +33,7 @@
 			{
 				var tagValue = table.rows[i].getElementsByTagName("td")[0].innerHTML;
 				var tagId = table.rows[i].getElementsByTagName("td")[1].innerHTML.trim();
-				parent.document.getElementById(tagId).innerHTML = tagValue;
+				parent.document.getElementById(tagId).innerHTML = tagValue.trim();
 			}
 		 }
 		 

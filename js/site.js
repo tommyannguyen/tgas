@@ -61,48 +61,76 @@ function tgasHome(tabInfo,tabSetting,tabConfig,tabAlarm,divInfo,divSetting,divCo
 
 	self.alarmInvalidate = function()
 	{
-		var txtNoAlarm = $("#ref_No_Alarm_Value");
-		var alarmNotifyIcon = $("#alarm-notify-icon");
-		var txtHighOxyOutput = $("#ref_High_Oxy_Oput_Value");
-		var txtHighTemp = $("#ref_High_Temp_Air_Value");
-		var txtLowPressure = $("#ref_Low_Pressure_Air_Value");
-		
-		if(self.no_Alarm_Value == "0")
+		var isChanged = false;
+		var value = $("#No_Alarm_Value").text();
+		if(value != self.no_Alarm_Value)
 		{
-			txtNoAlarm.addClass("hidden");
-			alarmNotifyIcon.removeClass("hidden");
+		  	self.no_Alarm_Value = value;
+			isChanged = true;
 		}
-		else
+	    value = $("#High_Oxy_Oput_Value").text();
+		if(value != self.high_Oxy_Oput_Value)
 		{
-			txtNoAlarm.removeClass("hidden");
-			alarmNotifyIcon.addClass("hidden");
+		  	self.high_Oxy_Oput_Value = value;
+			isChanged = true;
 		}
+		value = $("#High_Temp_Air_Value").text();
+		if(value != self.high_Temp_Air_Value)
+		{
+		  		self.high_Temp_Air_Value = value;
+				isChanged = true;
+		}
+		value = $("#Low_Pressure_Air_Value").text();
+		if(value != self.low_Pressure_Air_Value)
+		{
+			self.low_Pressure_Air_Value = value;
+			isChanged = true;
+		}
+		if(isChanged)
+		{
+			var txtNoAlarm = $("#ref_No_Alarm_Value");
+			var alarmNotifyIcon = $("#alarm-notify-icon");
+			var txtHighOxyOutput = $("#ref_High_Oxy_Oput_Value");
+			var txtHighTemp = $("#ref_High_Temp_Air_Value");
+			var txtLowPressure = $("#ref_Low_Pressure_Air_Value");
+			
+			if(self.no_Alarm_Value == "0")
+			{
+				txtNoAlarm.addClass("hidden");
+				alarmNotifyIcon.removeClass("hidden");
+			}
+			else
+			{
+				txtNoAlarm.removeClass("hidden");
+				alarmNotifyIcon.addClass("hidden");
+			}
 
-		if(self.high_Oxy_Oput_Value == "0")
-		{
-			txtHighOxyOutput.addClass("hidden");
-		}
-		else
-		{
-			txtHighOxyOutput.removeClass("hidden");
-		}
+			if(self.high_Oxy_Oput_Value == "0")
+			{
+				txtHighOxyOutput.addClass("hidden");
+			}
+			else
+			{
+				txtHighOxyOutput.removeClass("hidden");
+			}
 
-		if(self.high_Temp_Air_Value == "0")
-		{
-			txtHighTemp.addClass("hidden");
-		}
-		else
-		{
-			txtHighTemp.removeClass("hidden");
-		}
+			if(self.high_Temp_Air_Value == "0")
+			{
+				txtHighTemp.addClass("hidden");
+			}
+			else
+			{
+				txtHighTemp.removeClass("hidden");
+			}
 
-		if(self.low_Pressure_Air_Value == "0")
-		{
-			txtLowPressure.addClass("hidden");
-		}
-		else
-		{
-			txtLowPressure.removeClass("hidden");
+			if(self.low_Pressure_Air_Value == "0")
+			{
+				txtLowPressure.addClass("hidden");
+			}
+			else
+			{
+				txtLowPressure.removeClass("hidden");
+			}
 		}
 	};
 
@@ -161,40 +189,6 @@ function tgasHome(tabInfo,tabSetting,tabConfig,tabAlarm,divInfo,divSetting,divCo
 			e.preventDefault();
 		});
 
-		//Alarms track changes
-		$("#No_Alarm_Value").change(function() {
-		  	var value = $(this).val();
-		  	if(value != self.no_Alarm_Value)
-		  	{
-		  		self.no_Alarm_Value = value;
-		  		self.alarmInvalidate();
-		  	}
-		});
-		$("#High_Oxy_Oput_Value").change(function() {
-		  	var value = $(this).val();
-		  	if(value != self.high_Oxy_Oput_Value)
-		  	{
-		  		self.high_Oxy_Oput_Value = value;
-		  		self.alarmInvalidate();
-		  	}
-		});
-		$("#High_Temp_Air_Value").change(function() {
-		  	var value = $(this).val();
-		  	if(value != self.high_Temp_Air_Value)
-		  	{
-		  		self.high_Temp_Air_Value = value;
-		  		self.alarmInvalidate();
-		  	}
-		});
-		$("#Low_Pressure_Air_Value").change(function() {
-		  	var value = $(this).val();
-		  	if(value != self.low_Pressure_Air_Value)
-		  	{
-		  		self.low_Pressure_Air_Value = value;
-		  		self.alarmInvalidate();
-		  	}
-		});
-		self.alarmInvalidate();
 		self.invalidate();
 	};
 	self.int();
