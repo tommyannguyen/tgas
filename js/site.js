@@ -232,3 +232,18 @@ function tgasHome(tabInfo,tabSetting,tabConfig,tabAlarm,divInfo,divSetting,divCo
 	self.int();
 	return self;
 }
+
+function authenticationService()
+{
+	var self = this;
+	self.autoLogin = function()
+	{
+		var spost = 'Login=admin&Password=ToanGiang';
+		$.post("/FormLogin",spost,function(result){
+			console.log("auto-login: success");
+			console.log(result);
+		});
+	}
+	
+	return self;
+}

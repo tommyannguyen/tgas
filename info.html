@@ -15,11 +15,16 @@
 		<script type="text/javascript">
 		
 			$( document ).ready(function() {
+				var auth = new authenticationService();
+				auth.autoLogin();
+				
 			  	var home = new tgasHome($("#tab_Info"),$("#tab_Setting"),$("#tab_Config"),$("#tab_Alarm"),
 			  		$("#div_Info"),$("#div_Setting"),$("#div_Config"),$("#div_Alarm"));
 				document.getElementById("alarm-frame").addEventListener('load', function() {
 					home.alarmInvalidate();
 				  });
+				  
+				  
 			});
 			
 		</script>
