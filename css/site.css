@@ -58,14 +58,19 @@
 }
 .plc-on,.plc-on:focus
 {
-	background: #33CC00;
+	/* background-image: url("../img/N2machine_Start.png"); */
 	color:white;
 }
 .plc-off,.plc-off:focus
 {
-	background: red;
+	/* background-image: url("../img/N2machine_Stop.png"); */
 	color:white;
 }
+.block-infos .heading-title
+{
+	padding-left: 8px;
+}
+
 
 
 

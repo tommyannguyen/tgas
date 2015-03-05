@@ -142,11 +142,13 @@ function tgasHome(tabInfo,tabSetting,tabConfig,tabAlarm,divInfo,divSetting,divCo
 		{
 			btnOnOff.addClass("plc-on");
 			btnOnOff.removeClass("plc-off");
+			btnOnOff.attr("src","img/N2machine_Start.png");
 		}
 		else
 		{
 			btnOnOff.removeClass("plc-on");
 			btnOnOff.addClass("plc-off");
+			btnOnOff.attr("src","img/N2machine_Stop.png");
 		}
 	};
 	self.setOnOff = function(val)
