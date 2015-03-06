@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Operation info</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="css/site.css">
+		<script src="js/jquery-1.11.2.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/site.js"></script>
+		<script type="text/javascript">
+		
+			$( document ).ready(function() {
+				$("#btnLoginFalse").click(function(){
+					var spost = 'Login=admin&Password=ToanGiang1';
+					$.post("/FormLogin",spost,function(result){
+						alert(result);
+					});
+				});
+
+				$("#btnLoginTrue").click(function(){
+					var spost = 'Login=admin&Password=ToanGiang';
+					$.post("/FormLogin",spost,function(result){
+						alert(result);
+					});
+				});
+				$("#btnRequestWhenLogin").click(function(){
+					$.get("/Portal/Portal.mwsl",function(result){
+						alert(result);
+					});
+				});
+
+			});
+			
+		</script>
+	</head>
+<body>
+	<button type="button" id="btnLoginFalse">Test login false</button>
+	<button type="button" id="btnLoginTrue">Test login true</button>
+	<button type="button" id="btnRequestWhenLogin">Request when user is login or not login yet</button>
+</body>
+</html>
