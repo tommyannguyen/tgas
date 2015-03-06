@@ -249,3 +249,98 @@ function authenticationService()
 	
 	return self;
 }
+
+
+function tgasGraph()
+{
+	var self = this;
+	$.ajaxSetup({ cache: false });
+	self.line1 =  new TimeSeries();
+	self.line2 = new TimeSeries();
+	self.x=0.0;
+	self.stringValue = "";
+
+	self.g1; 
+	self.g2;
+	self.g3;
+	self.g4;
+	self.int = function()
+	{	
+		self.resizeGraph();
+    	var smoothie = new SmoothieChart({minValue: -100, maxValue: 100, labels: "#000000", millisPerPixel: 441, timeStamps: true, maxStorageTime: 1800000, interpolation: "line", grid: ({strokeStyle:"#708090", fillStyle:"#ffffff", lineWidth:1, millisPerLine:30000, verticalSections:5})});
+    	smoothie.addTimeSeries(self.line1, ({strokeStyle:"rgb(255, 0, 0)", lineWidth:2}));
+    	smoothie.addTimeSeries(self.line2, ({strokeStyle:"rgb(0, 255, 0)", lineWidth:2}));
+      	smoothie.streamTo(document.getElementById("smoothie"), 1000);
+        self.changeTimeScale(1,smoothie,'smoothie');
+        window.addEventListener('resize', self.resizeGraph, false);
+		window.addEventListener('orientationchange', self.resizeGraph, false);
+        setInterval(function() {
+				self.readValues();
+			},1500);
+	}
+	self.test = function()
+	{
+		var test1 = 10;
+		self.x = self.x+0.25;
+		//line1.append(new Date().getTime(), 100.0*Mat.Abs(Math.sin(x)));
+		self.line1.append(new Date().getTime(), test1);
+		//line2.append(new Date().getTime(), 100.0*Math.cos(x*Math.PI/180)+10*Math.random());
+		//self.g1.refresh(parseInt(test1));
+		//self.g2.refresh(getRandomInt(50, 100));
+
+
+
+		var test2 = "";
+				if (self.stringValue !='' && self.stringValue != test2 && test2.trim() !=''){
+					//toastr.options.positionClass = "toast-top-full-width";
+					toastr.options.timeOut = 20000;
+					toastr.options.extendedTimeOut = 0;
+					toastr.error(test2.trim());
+				}
+				self.stringValue = test2;
+	};
+	self.readValues = function()
+	{
+		//self.test();return;
+		$.get("N2_Pressure_Input.htm", function(result){
+			    self.x = self.x+0.25;
+			    //line1.append(new Date().getTime(), 100.0*Mat.Abs(Math.sin(x)));
+			    self.line1.append(new Date().getTime(), result);
+			    //line2.append(new Date().getTime(), 100.0*Math.cos(x*Math.PI/180)+10*Math.random());
+				//self.g1.refresh(parseInt(result));
+				//self.g2.refresh(getRandomInt(50, 100));
+
+			});
+
+			$.get("IOtoastvalue.htm", function(result){
+				if (self.stringValue !='' && self.stringValue != result && result.trim() !=''){
+					//toastr.options.positionClass = "toast-top-full-width";
+					toastr.options.timeOut = 20000;
+					toastr.options.extendedTimeOut = 0;
+					toastr.error(result.trim());
+				}
+				self.stringValue = result;
+
+			});
+	}
+	self.changeTimeScale = function(val, smooth, canvas) {
+		var c = document.getElementById(canvas);
+		var w = c.width;
+		var mspl = smooth.options.grid.millisPerLine;
+		var mspp = smooth.options.millisPerPixel;
+		var lpc = w * mspp / mspl;
+		var x = val * 60;
+		x = Math.ceil(x);
+		smooth.options.millisPerPixel = x / w * 1000;
+		smooth.options.grid.millisPerLine = w * smooth.options.millisPerPixel / lpc;
+		};
+	self.resizeGraph = function() {
+	    var gameArea = $('#smoothie-div');
+	    var gameCanvas = document.getElementById('smoothie');
+	    gameCanvas.width = gameArea.width();
+	    gameCanvas.height = gameArea.height();
+	}
+
+	self.int();
+	return self;
+}

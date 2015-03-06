@@ -11,6 +11,10 @@
 		<link rel="stylesheet" href="css/site.css">
 		<script src="js/jquery-1.11.2.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
+		<script src="js/smoothie2.js"></script>
+		<script src="js/raphael.2.1.0.min.js"></script>
+	    <script src="js/justgage.1.0.1.min.js"></script>
+	    <script src="js/toastr.js"></script>
 		<script src="js/site.js"></script>
 		<script type="text/javascript">
 		
@@ -18,6 +22,7 @@
 				var auth = new authenticationService();
 				auth.autoLogin();
 				
+				var graph = new tgasGraph();
 			  	var home = new tgasHome($("#tab_Info"),$("#tab_Setting"),$("#tab_Config"),$("#tab_Alarm"),
 			  		$("#div_Info"),$("#div_Setting"),$("#div_Config"),$("#div_Alarm"));
 				document.getElementById("alarm-frame").addEventListener('load', function() {
@@ -145,8 +150,8 @@
 			<div class="col-md-6" >
 		  	<div class="panel panel-default" id="div_Config">
 			  <div class="panel-heading heading-title">Config</div>
-			  <div class="graph-value">
-			  	
+			  <div class="graph-value" id="smoothie-div">
+			  		<canvas class="smoothie" id="smoothie" height="100%" width="100%" > </canvas>
 			  </div>
 			  
 			  <iframe src="Update_Graph.html" style="display:none;"></iframe>

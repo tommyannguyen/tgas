@@ -56,6 +56,10 @@
 	display : inline;
 	margin-left : 20px;
 }
+.plc-on:hover,.plc-off:hover
+{
+	border: solid 5px;
+}
 .plc-on,.plc-on:focus
 {
 	/* background-image: url("../img/N2machine_Start.png"); */
