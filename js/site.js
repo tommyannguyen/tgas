@@ -257,23 +257,52 @@ function tgasGraph()
 	$.ajaxSetup({ cache: false });
 	self.line1 =  new TimeSeries();
 	self.line2 = new TimeSeries();
-	self.x=0.0;
+	self.x= 0.0;
 	self.stringValue = "";
-
+	self.minValue = 0;
+	self.maxValue = 100;
+	self.scaleValue = 1;
+	
 	self.g1; 
 	self.g2;
 	self.g3;
 	self.g4;
 	self.int = function()
 	{	
+		var btnConfig = $("#btnConfig");
+		var ddlConfigMin = $("#ddlConfigMin");
+		var ddlConfigMax = $("#ddlConfigMax");
+		var ddlConfigScale = $("#ddlConfigScale");
+		
+		var html ="";
+		for(var i= 0;i <= 100;i++)
+		{
+			html+="<option value='"+i+"'>"+i+"</option>";
+		}
+		ddlConfigMin.html(html);
+		ddlConfigMin.val(self.minValue.toString());
+		ddlConfigMax.html(html);
+		ddlConfigMax.val(self.maxValue.toString());
+
+		ddlConfigScale.val(self.scaleValue.toString());
+		
 		self.resizeGraph();
-    	var smoothie = new SmoothieChart({minValue: -100, maxValue: 100, labels: "#000000", millisPerPixel: 441, timeStamps: true, maxStorageTime: 1800000, interpolation: "line", grid: ({strokeStyle:"#708090", fillStyle:"#ffffff", lineWidth:1, millisPerLine:30000, verticalSections:5})});
+    	var smoothie = new SmoothieChart({minValue: self.minValue, maxValue: self.maxValue, labels: "#000000", millisPerPixel: 441, timeStamps: true, maxStorageTime: 1800000, interpolation: "line", grid: ({strokeStyle:"#708090", fillStyle:"#ffffff", lineWidth:1, millisPerLine:30000, verticalSections:5})});
     	smoothie.addTimeSeries(self.line1, ({strokeStyle:"rgb(255, 0, 0)", lineWidth:2}));
     	smoothie.addTimeSeries(self.line2, ({strokeStyle:"rgb(0, 255, 0)", lineWidth:2}));
       	smoothie.streamTo(document.getElementById("smoothie"), 1000);
         self.changeTimeScale(1,smoothie,'smoothie');
         window.addEventListener('resize', self.resizeGraph, false);
 		window.addEventListener('orientationchange', self.resizeGraph, false);
+		
+		$('#myModal .btn-primary').click(function() {
+			smoothie.options.minValue = ddlConfigMin.val();
+			smoothie.options.maxValue = ddlConfigMax.val();
+			
+			self.changeTimeScale(parseInt(ddlConfigScale.val()),smoothie,'smoothie');
+			$('#myModal').modal('hide');
+		});
+		
         setInterval(function() {
 				self.readValues();
 			},1500);

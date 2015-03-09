@@ -74,7 +74,18 @@
 {
 	padding-left: 8px;
 }
-
+#btnConfig
+{
+	float:right;
+}
+.modal-body .row
+{
+	margin-bottom:5px;
+}
+.modal-body .row select
+{
+	width : 100px;
+}
 
 
 
