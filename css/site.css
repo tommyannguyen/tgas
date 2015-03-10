@@ -90,6 +90,39 @@
 {
 	width : 100px;
 }
+.bs-form {
+margin-right: auto;
+margin-left: auto;
+background-color: #fff;
+border-color: #ddd;
+border-width: 1px;
+border-radius: 4px 4px 0 0;
+-webkit-box-shadow: none;
+box-shadow: none;
+border-style: solid;
+position: relative;
+padding: 45px 15px 15px;
+width:820px;
+margin-top: 20px;
+}
+.bs-form *
+{
+	font-size: 20px;
+}
+#ddlRemoveLocal
+{
+	margin-top: 5px;
+	width: 150px;
+}
+.btn-back
+{
+	font-size:30px;
+}
+.menu-name
+{
+	font-size:24px;
+	margin-left: 30px;
+}
 
 
 
