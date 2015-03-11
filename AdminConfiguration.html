@@ -1,13 +1,168 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<!-- AWP_In_Variable Name='M50.1' -->
+
+<!-- AWP_In_Variable Name='"Data_block_1".Valve_on_delay' -->
+<!-- AWP_In_Variable Name='"Data_block_1".Add time delay' -->
+<!-- AWP_In_Variable Name='"Data_block_1".Cycle time delay' -->
+<!-- AWP_In_Variable Name='"Data_block_1".Temp_High_Value' -->
+<!-- AWP_In_Variable Name='"Data_block_1".Temp_High_Difference_Value' -->
 <html>
 	<head>
-		<title>Set on-off</title>
+		<title>Admin Config</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="css/site.css">
+		<script src="js/jquery-1.11.2.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/smoothie2.js"></script>
+		<script src="js/raphael.2.1.0.min.js"></script>
+	    <script src="js/justgage.1.0.1.min.js"></script>
+	    <script src="js/toastr.js"></script>
+		<script src="js/site.js"></script>
+		<script type="text/javascript">
+			
+			
+			$( document ).ready(function() {
+				var au = new authenticationService();
+				var lblError = $("#lblError");
+				lblError.hide();
+				$('#myModal').modal({
+				backdrop: 'static',
+				show :'true'
+				});
+				
+				$(".btn-primary").click(function(){
+					if(au.checkUser($("#txtLoginUserName").val(),$("#txtLoginPassword").val()))
+					{
+						au.autoLogin();
+						$('#myModal').modal('hide');
+						lblError.hide();
+						
+					}
+					else
+					{
+						lblError.show();
+					}
+				});
+				$( "#myModal" ).on( "keydown", function(event) {
+				  if(event.which == 13){
+						$(".btn-primary").click();
+					 }
+				});
+				
+				$("#btnSave").click(function(e){
+					var updateAdminConfiguration = $("#UpdateAdminConfiguration").contents();
+					var para1 = updateAdminConfiguration.find('#para1');
+					var para2 = updateAdminConfiguration.find('#para2');
+					var para3 = updateAdminConfiguration.find('#para3');
+					var para4 = updateAdminConfiguration.find('#para4');
+					var para5 = updateAdminConfiguration.find('#para5');
+					para1.val($("#para1").val());
+					para2.val($("#para2").val());
+					para3.val($("#para3").val());
+					para4.val($("#para4").val());
+					para5.val($("#para5").val());
+					try
+					{
+					updateAdminConfiguration.find('form').submit();
+					}
+					catch(ex){}
+					e.preventDefault();
+				});
+			});
+			
+		</script>
 	</head>
 	<body>
-		<form method="post">
-			<input name='M50.1' size="10" value='' type="text" id="ON_OFF"/> 
-			<input type="submit" value="Write to PLC"/>
-		</form>
+			<div class="container">
+			<div class="row">
+				<div class="col-md-12" >
+					<a href="info.html" class="btn-back muted icon-menu">
+					 <span class="glyphicon glyphicon-chevron-left" aria-hidden="true">Back</span>
+					</a>
+					<span class="menu-name">
+						Admin Config
+					</span>
+					<iframe src="UpdateAdminConfiguration.html" style="display:none;" id="UpdateAdminConfiguration"></iframe>
+				</div>
+			</div>
+			<div class="row">
+				<!-- Modal -->
+					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+					  <div class="modal-dialog">
+						<div class="modal-content">
+						  <div class="modal-header">
+							<h4 class="modal-title" id="myModalLabel">Please input your account !</h4>
+						  </div>
+						  <div class="modal-body">
+							<div class="row">
+							  <div class="col-md-3">
+								User name
+							  </div>
+							  <div class="col-md-9">
+								<input type="text" id="txtLoginUserName"></input>
+							  </div>
+							</div>
+							<div class="row">
+							  <div class="col-md-3">
+								Password
+							  </div>
+							  <div class="col-md-9">
+								<input type="password" id="txtLoginPassword"></input>
+							  </div>
+							</div>
+							<div class="row">
+							  <div class="col-md-3">
+							  </div>
+							  <div class="col-md-9">
+								<span type="text" id="lblError" style="color:red;">The username or password is invalid !</input>
+							  </div>
+							</div>
+						  </div>
+						  <div class="modal-footer">
+							<button type="button" class="btn btn-primary" >Save changes</button>
+						  </div>
+						</div>
+					  </div>
+					</div>
+				<div class="bs-form">
+				<div class="form-horizontal">
+						<div class="form-group">
+						<label class="col-sm-2 control-label">Parameter 1</label>
+						<div class="col-sm-4">
+						 			<input id="para1" name='"Data_block_1".Valve_on_delay' size="10" value=':="Data_block_1".Valve_on_delay:' type="text"/> 
+						</div>
+						<label class="col-sm-2 control-label">Parameter 2</label>
+						<div class="col-sm-4">
+						 			<input id="para2" name='"Data_block_1".Add time delay' size="10" value=':="Data_block_1".Add time delay:' type="text" /> 
+						</div>
+					  </div>
+					  <div class="form-group">
+						<label for="inputPassword" class="col-sm-2 control-label">Parameter 3</label>
+						<div class="col-sm-4">
+							<input id="para3" name='"Data_block_1".Cycle time delay' size="10" value=':="Data_block_1".Cycle time delay:' type="text"/>
+						</div>
+						<label for="inputPassword" class="col-sm-2 control-label">Temp high</label>
+						<div class="col-sm-4">
+							<input id="para4" name='"Data_block_1".Temp_High_Value' size="10" value=':="Data_block_1".Temp_High_Value:' type="text"/>
+						</div>
+					  </div>
+					   <div class="form-group">
+						<label for="inputPassword" class="col-sm-2 control-label">Difference</label>
+						<div class="col-sm-4">
+							<input id="para5" name='"Data_block_1".Temp_High_Difference_Value' size="10" value=':="Data_block_1".Temp_High_Difference_Value:' type="text"/>
+						</div>
+					  </div>
+					  <div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+							  <button type="submit" class="btn btn-default" id="btnSave">Save</button>
+							</div>
+					  </div>
+					</div>	
+				</div>					
+			</div>
+
 	</body>
 </html>

@@ -238,18 +238,28 @@ function tgasHome(tabInfo,tabSetting,tabConfig,tabAlarm,divInfo,divSetting,divCo
 function authenticationService()
 {
 	var self = this;
+	self.userName = "admin";
+	self.password = "ToanGiang";
+	
 	self.autoLogin = function()
 	{
-		var spost = 'Login=admin&Password=ToanGiang';
+		var spost = 'Login='+self.userName+'&Password='+self.password;
 		$.post("/FormLogin",spost,function(result){
-			console.log("auto-login: success");
-			console.log(result);
 		});
 	}
-	
+	self.checkUser = function(user,pass)
+	{
+		if(user != undefined && pass != undefined)
+		{
+			if(user.trim() == self.userName && pass.trim()==self.password)
+			{
+				return true;
+			}
+		}
+		return false;
+	};
 	return self;
 }
-
 
 function tgasGraph()
 {

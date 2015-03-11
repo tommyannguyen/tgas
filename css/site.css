@@ -136,6 +136,10 @@ margin-top: 20px;
 	font-size:16px;
 	margin-left: 30px;
 }
+#txtLoginPassword,#txtLoginUserName
+{
+	width:400px;
+}
 
 
 
