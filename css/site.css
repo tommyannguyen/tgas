@@ -9,7 +9,7 @@
 }
 h3.icon-menu
 {
-	font-size: 16px;
+	font-size: 28px;
 }
 .td-title
 {
@@ -45,7 +45,7 @@ h3.icon-menu
 }
 .block-infos *
 {
-	font-size:11px;
+	font-size:12px;
 }
 .block-infors .panel-default
 {
@@ -120,7 +120,7 @@ margin-top: 20px;
 }
 .bs-form *
 {
-	font-size: 11px;
+	font-size: 12px;
 }
 #ddlRemoveLocal
 {
